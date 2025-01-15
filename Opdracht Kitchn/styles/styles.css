@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------
+    ALGEMEEN
+--------------------------------------------------------------*/
+
 * {
     margin: 0;
 }
@@ -8,9 +12,9 @@ body {
 
 h1 {
     text-transform: uppercase;
+    font-size: 2.5em;
+    border-bottom: 2px solid black; /*geen underline want volledige breedte*/
     color: black;
-    border-bottom: 2px solid black;
-    padding-bottom: 0.5em;
     margin-bottom: 1em;
 }
 
@@ -19,20 +23,32 @@ h2 {
     margin-bottom: 1em;
 }
 
-header {
-    border-bottom: #ebe8e8 solid 1px;
+.respimg {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-#imageWrapper {
-    margin-left: auto;
-    margin-right: auto;
-    width: 60px;
+/*--------------------------------------------------------------
+    HEADER
+--------------------------------------------------------------*/
+
+#topHeader {
+    border-bottom: 1px solid #ebe8e8;
 }
 
+#topHeaderContainer {
+    width: 600px;
+    margin: 0 auto;
+}
 
-#imageWrapper > img {
+#topHeaderContainer > img {
     height: 50px;
 }
+
+/*--------------------------------------------------------------
+    NAVIGATION
+--------------------------------------------------------------*/
 
 nav {
     width: 600px;
@@ -47,156 +63,171 @@ nav > ul {
 
 nav > ul > li {
     text-align: center;
-    padding: 10px 0;
+    margin: 10px 0;
     border-right: #ebe8e8 solid 1px;
+    box-sizing: border-box;
+    padding-bottom: 2px; /* remove this padding when hovering, this way content doesn't move */
+}
+
+nav > ul > li:hover {
+    border-bottom: #fff100 solid 2px;
+    padding-bottom: 0;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
     text-transform: uppercase;
     color: #5b4746;
-    font-size: 13px;
+    font-size: 0.8125em; /*13px/16px = 0.8125em*/
 }
 
-nav > ul > li > a:hover {
-    text-decoration: underline;
-    text-decoration-color: #fff100;
-    text-decoration-thickness: 2px;
-
-}
-
-
-nav > ul > li:last-child {
+nav > ul > li:last-of-type {
     border-right: none;
 }
 
+/*--------------------------------------------------------------
+    MAIN
+--------------------------------------------------------------*/
 
-.respimg {
-    width: 100%;
-    height: auto;
-    display: block;
+main {
+    border-top: solid 1px #ebe8e8;
 }
 
+/*--------------------------------------------------------------
+    MAIN - HEADER
+--------------------------------------------------------------*/
 
 main > header {
-    border-top: 1px #ebe8e8 solid;
+    height: 500px;
+    background-image: url("../images/headerimage.jpg");
+    background-size: cover;
+    background-position: center;
+    /* center text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-main > header > img {
-    height: 250px;
-    width: 100%;
-    object-fit: cover;
-}
-
-main > header {
-    position: relative;
-}
-
-main > header > p {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    text-align: center;
-    width: 100%;
+main > header > h1 {
     color: white;
+    border-bottom: none;
+    text-transform: none;
     font-size: 2.5em;
-    text-shadow: 2px 2px #8D99AE;
+    font-weight: normal;
+    text-shadow: #8d99ae 2px 2px;
+    margin-bottom: 0;
 }
 
-@media (min-width: 800px) {
-    main > header > p {
-        font-size: 5em;
-    }
-}
-
-section.recipes {
-    margin-top: 50px;
+/*--------------------------------------------------------------
+    MAIN - RECIPES
+--------------------------------------------------------------*/
+#recipes {
+    margin: 50px auto;
     width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #recipeContainer {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
 
 #recipeContainer > article {
     margin-right: 1.5em;
     padding-top: 1em;
-    border-top: #ddd solid 1px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid #ebe8e8;
 }
 
-#recipeContainer > article p.kicker {
+#recipeContainer .kicker {
     text-transform: uppercase;
-    font-size: 1.2em;
+    padding-bottom: 0.9em;
+    font-size: 0.9em;
     letter-spacing: 1px;
     color: #ff4d56;
 }
 
-#recipeContainer > article h2 > a {
+#recipeContainer > article > header > h2 > a {
     text-decoration: none;
-    color: black
+    color: black;
 }
 
-#recipeContainer > article p.mainText {
+#recipeContainer .recipeText {
     color: #666;
     line-height: 2;
+    padding-bottom: 1em;
 }
 
-#recipeContainer > article div.authorTimestampContainer {
-    display: grid;
-    grid-template-columns: auto 1fr;
-}
-
-#recipeContainer > article p.author {
+#recipeContainer > article > footer > .author {
     padding-right: 10px;
-    border-right: 1px #ebe8e8 solid;
+    border-right: 1px solid #ebe8e8;
     font-style: italic;
-    width: fit-content;
+    display: inline;
 }
 
-#recipeContainer > article p.timestamp {
+#recipeContainer > article > footer > time {
     padding-left: 10px;
     color: #666;
-
 }
 
-section.recommended {
-    margin-top: 50px;
+/*--------------------------------------------------------------
+    MAIN - RECOMMENDED (non bootstrap part)
+--------------------------------------------------------------*/
+#recommended {
+    margin: 50px auto;
     width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
 }
 
-footer {
-    border: 1px #ebe8e8 solid;
+#recommended > .container img {
+    margin-bottom: 25px;
+}
+
+/*--------------------------------------------------------------
+    FOOTER
+--------------------------------------------------------------*/
+
+footer#footer {
+    border-top: solid 1px #ebe8e8;
+}
+
+footer#footer > div {
+    width: 50%;
     line-height: 2em;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-footer > #left {
+footer#footer > #left {
     float: left;
-    width: 50%;
-    box-sizing: border-box;
     text-align: right;
-    padding-right: 20px;
 }
-footer > #right {
+
+footer#footer > #right {
     float: right;
-    width: 50%;
-    box-sizing: border-box;
     text-align: left;
     background-color: black;
     color: white;
-    padding-left: 20px;
 }
 
-@media (min-width: 770px) {
-    #imageWrapper, nav, section.recipes, section.recommended {
+/*--------------------------------------------------------------
+    RESPONSIVE
+--------------------------------------------------------------*/
+
+@media screen and (min-width: 770px) {
+    #topHeaderContainer, nav, #recipes, #recommended {
         width: 750px;
     }
 }
 
-@media (min-width: 1000px) {
-    #imageWrapper, nav, section.recipes, section.recommended {
+@media screen and (min-width: 1000px) {
+    #topHeaderContainer, nav, #recipes, #recommended {
         width: 980px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    main > header > h1 {
+        font-size: 5em;
     }
 }
